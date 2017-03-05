@@ -11,44 +11,26 @@
 #import "SettingsViewController.h"
 #import "NativeAdViewController.h"
 #import "AppDelegate.h"
+#import "MPMobFoxNativeAdRenderer.h"
+#import "GenericAdapterViewController.h"
+#import "MFDemoConstants.h"
 
-
-#define NATIVEAD_ADAPTER_TEST 0
-#define ADMOB_ADAPTER_TEST 0
-#define MOPUB_ADAPTER_TEST 0
-#define SMAATO_ADAPTER_TEST 0
-#define ADS_TYPE_NUM 8
+#define ADS_TYPE_NUM 9
 #define AD_REFRESH 0
+
+
 
 typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     MFAdTypeBanner = 0,
-    MFAdTypeInterstitial ,
-    MFAdTypeNative ,
-    MFAdTypeVideoBanner ,
-    MFAdTypeVideoInterstitial ,
+    MFAdTypeInterstitial,
+    MFAdTypeNative,
+    MFAdTypeVideoBanner,
+    MFAdTypeVideoInterstitial,
     MFTestWaterfall,
-    MFTestScrolView
+    MFTestScrolView,
+    MFTestGenericAdapter,
+    MFTestAdapters
 };
-
-#define MOBFOX_HASH_BANNER @"a7d08674ed1bb5fb26255cf3622076ce"
-#define MOBFOX_HASH_INTER @"145849979b4c7a12916c7f06d25b75e3"
-#define MOBFOX_HASH_NATIVE @"80187188f458cfde788d961b6882fd53"
-#define MOBFOX_HASH_VIDEO @"80187188f458cfde788d961b6882fd53"
-#define MOBFOX_HASH_AUDIO @"75f994b45ca31b454addc8b808d59135"
-
-#define MOBFOX_HASH_BANNER_TEST @"fe96717d9875b9da4339ea5367eff1ec"
-#define MOBFOX_HASH_INTER_TEST @"267d72ac3f77a3f447b32cf7ebf20673"
-#define MOBFOX_HASH_NATIVE_TEST @"80187188f458cfde788d961b6882fd53"
-#define MOBFOX_HASH_VIDEO_TEST @"80187188f458cfde788d961b6882fd53"
-#define MOBFOX_HASH_AUDIO_TEST @"75f994b45ca31b454addc8b808d59135"
-
-#define MOPUB_HASH_NATIVE @"ac0f139a2d9544fface76d06e27bc02a"
-#define MOPUB_HASH_BANNER @"234dd5a1b1bf4a5f9ab50431f9615784"
-#define MOPUB_HASH_INTER @"a5277fa1fd57418b867cfaa949df3b4a"
-
-
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 
 
@@ -56,7 +38,6 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 
 @property (strong, nonatomic) MobFoxAd *mobfoxAd;
 @property (strong, nonatomic) MobFoxAd *mobfoxAdWaterfall;
-
 @property (strong, nonatomic) MobFoxInterstitialAd *mobfoxInterAd;
 @property (strong, nonatomic) MobFoxNativeAd* mobfoxNativeAd;
 @property (strong, nonatomic) MobFoxAd *mobfoxVideoAd;
@@ -74,26 +55,68 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 @property (weak, nonatomic) IBOutlet UILabel *nativeAdTitle;
 @property (weak, nonatomic) IBOutlet UILabel *nativeAdDescription;
 @property (weak, nonatomic) IBOutlet UITextField *invhInput;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
 
-@property (strong, nonatomic) MPAdView *mpAdView;
-@property (strong, nonatomic) MPInterstitialAdController *mpInterstitialAdController;
 
 @property (nonatomic) CGRect videoAdRect;
 @property (nonatomic) CGRect bannerAdRect;
+@property (nonatomic) NSIndexPath *lastIndexSelected;
 
 
+@property (nonatomic, strong) MFTestAdapter *testAdapter;
+
+
+/*** AdMob ***/
+@property (nonatomic, strong) GADBannerView *gadBannerView;
+@property (nonatomic, strong) DFPBannerView *dfpBannerView;
+@property (nonatomic, strong) GADInterstitial *gadInterstitial;
+@property (nonatomic, strong) DFPInterstitial *dfpInterstitial;
+@property (nonatomic, strong) GADNativeAd *gadNative;
+@property (nonatomic, strong) GADAdLoader *adLoader;
+
+
+/*** Smaato ***/
+@property (nonatomic, strong) SOMAAdView* somaBanner;
+@property (nonatomic, strong) SOMAInterstitialAdView* somaInterstitial;
+@property (nonatomic, strong) SOMANativeAd* somaNative;
+
+
+/*** MoPub ***/
+@property (nonatomic, retain) MPAdView *adView;
+@property (nonatomic, retain) MPCollectionViewAdPlacer* placer;
+@property (strong, nonatomic) MPAdView *mpAdView;
+@property (strong, nonatomic) MPInterstitialAdController *mpInterstitialAdController;
+@property (strong, nonatomic) MPNativeAd *mpNativeAd;
 
 
 @end
 
+
+
 @implementation MainViewController
 
 
+static bool perform_segue_enabled;
+
+- (void)setBtnSelected {
+    
+    NSLog(@"setBtnSelected");
+    
+    [self performSegueWithIdentifier:@"MainToSettings" sender:self];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
+    
+    ////////////////////////////////////////////////////////////////////////
+    
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Set Inv" style:UIBarButtonItemStylePlain
+                                                                     target:self action:@selector(setBtnSelected)];
+    
+    _navigationItem.rightBarButtonItem = settingsButton;
 
     
     self.cellID = @"cellID";
@@ -119,17 +142,16 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     
     
     /*** Banner ***/
-    
     [MobFoxAd locationServicesDisabled:false];
-
 
     self.bannerAdRect = CGRectMake((screenWidth-bannerWidth)/2, SCREEN_HEIGHT - bannerHeight , bannerWidth, bannerHeight);
     self.mobfoxAd = [[MobFoxAd alloc] init:MOBFOX_HASH_BANNER_TEST withFrame:self.bannerAdRect];
     self.mobfoxAd.delegate = self;
     self.mobfoxAd.refresh = [NSNumber numberWithInt:AD_REFRESH];
+    self.mobfoxAd.adspace_strict = false;
     [self.view addSubview:self.mobfoxAd];
-
     
+
     /*** Interstitial ***/
     
     [MobFoxInterstitialAd locationServicesDisabled:true];
@@ -137,14 +159,15 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     MainViewController *rootController =(MainViewController*)[[(AppDelegate*)
                                                                [[UIApplication sharedApplication]delegate] window] rootViewController];
     
-    self.mobfoxInterAd = [[MobFoxInterstitialAd alloc] init:MOBFOX_HASH_INTER_TEST withRootViewController:rootController];
+    self.mobfoxInterAd = [[MobFoxInterstitialAd alloc] init:MOBFOX_HASH_INTER withRootViewController:rootController];
     self.mobfoxInterAd.delegate = self;
+    
     
     /*** Native ***/
     
     [MobFoxNativeAd locationServicesDisabled:true];
     
-    self.mobfoxNativeAd = [[MobFoxNativeAd alloc] init:MOBFOX_HASH_NATIVE_TEST];
+    self.mobfoxNativeAd = [[MobFoxNativeAd alloc] init:MOBFOX_HASH_NATIVE];
     self.mobfoxNativeAd.delegate = self;
     
     
@@ -161,6 +184,7 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     self.mobfoxVideoAd.skip = YES;
     [self.view addSubview:self.mobfoxVideoAd];
     
+    
     /*** Video (Inter) ***/
 
     [MobFoxAd locationServicesDisabled:true];
@@ -169,141 +193,44 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     self.mobfoxVideoInterstitial.delegate = self;
 
     
-    #if NATIVEAD_ADAPTER_TEST
-
-    // TEST: native ad adapter
-    MobFoxNativeAd *nativeAd = [[MobFoxNativeAd alloc] init:MOBFOX_HASH_NATIVE];
-    //NSLog(@"nativeAd: %@", nativeAd);
-  
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        MobFoxNativeAd *nativeAd = [[MobFoxNativeAd alloc] init:MOBFOX_HASH_NATIVE];
-        //NSLog(@"nativeAd: %@", nativeAd);
-
-    });
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    
-        MoPubNativeAdapterMobFox *nativeAdAdapter = [[MoPubNativeAdapterMobFox alloc] init];
-        nativeAdAdapter.delegate = self;
-        [nativeAdAdapter requestAdWithCustomEventInfo:nil];
-        
-    });
-    
-    #endif
-    
-    
-    #if ADMOB_ADAPTER_TEST
-    
-    // banner.
-    
-    //self.gadBannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 430, 320, 50)];
-    //self.gadBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-   //  self.gadBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeMediumRectangle];
-    
-    /*
-    self.gadBannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 430, 300, 250)];
-    //self.gadBannerView.adUnitID = @"ca-app-pub-6224828323195096/5677489566";
-    self.gadBannerView.adUnitID = @"ca-app-pub-6224828323195096/4116386766";
-    self.gadBannerView.rootViewController = self;
-    self.gadBannerView.delegate = self;
-    [self.view addSubview: self.gadBannerView];
-    GADRequest *request = [[GADRequest alloc] init];
-    //request.testDevices = @[ @"b94fb34e17824e61ad7e612ebc278a31" ];
-    [self.gadBannerView loadRequest:request];
-    */
-    
-     self.gadInterstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-6224828323195096/7876284361"];
-    GADRequest *request_interstitial = [GADRequest request];
-    // Requests test ads on test devices.
-    // request_interstitial.testDevices = @[ @"e79e2caa57cdab4fc709cf33c631dca3" ];
-    self.gadInterstitial.delegate = self;
-    [self.gadInterstitial loadRequest:request_interstitial];
-    NSLog(@"%s", GoogleMobileAdsVersionString);
-    
-    
-    /*
-    // DFP request.
-    self.dfpBannerView = [[DFPBannerView alloc] initWithFrame:CGRectMake(0, 330, 320, 50)];
-    self.dfpBannerView.adUnitID = @"ca-app-pub-6224828323195096/5240875564";
-    self.dfpBannerView.rootViewController = self;
-    [self.dfpBannerView loadRequest:[DFPRequest request]];
-    [self.view addSubview: self.dfpBannerView];
-    
-    
-    self.dfpInterstitial = [[DFPInterstitial alloc] initWithAdUnitID:@"ca-app-pub-6224828323195096/7876284361"];
-    GADRequest *dfp_request = [GADRequest request];
-    self.dfpInterstitial.delegate = self;
-    // Requests test ads on test devices.
-    dfp_request.testDevices = @[ @"221e6c438e8184e0556942ea14bb214b" ];
-    [self.dfpInterstitial loadRequest:dfp_request];
-    */
-    #endif
-    
-    #if MOPUB_ADAPTER_TEST
-    /*
-    self.mpAdView = [[MPAdView alloc] initWithAdUnitId:MOPUB_HASH_BANNER
-                                                     size:MOPUB_BANNER_SIZE];
-    self.mpAdView.delegate = self;
-    self.mpAdView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width) / 2,
-                                   self.view.bounds.size.height - MOPUB_BANNER_SIZE.height,
-                                   MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
-    [self.view addSubview:self.mpAdView];
-    [self.mpAdView loadAd];
-    */
-    
-    self.mpInterstitialAdController = [MPInterstitialAdController interstitialAdControllerForAdUnitId:MOPUB_HASH_INTER];
-    self.mpInterstitialAdController.delegate = self;
-    [self.mpInterstitialAdController loadAd];
-
-    
-    #endif
-    
-    #if SMAATO_ADAPTER_TEST
-
-    self.somaBanner = [SOMAAdView new];
-    self.somaBanner.frame = CGRectMake(0, 500, 320, 50);
-    [self.view addSubview:self.somaBanner];
-    self.somaBanner.adSettings.publisherId = 1100017255;
-    self.somaBanner.adSettings.adSpaceId = 130079630;
-    self.somaBanner.delegate = self;
-    [self.somaBanner load];
-    
-    self.somaInterstitial = [[SOMAInterstitialAdView alloc] init];
-    self.somaInterstitial.adSettings.publisherId = 1100017255;
-    self.somaInterstitial.adSettings.adSpaceId = 130079631;
-    self.somaInterstitial.delegate = self;
-    //[self.somaInterstitial load];
-    
-    self.somaNative = [[SOMANativeAd alloc] initWithPublisherId:@"0" adSpaceId:@"3075"];
-    self.somaNative.delegate = self;
-    self.somaNative.layout = SOMANativeAdLayoutNewsFeed; //Example; refer to minimum height values list below for all options
-
-    ///[self.somaNative load];
-    
-    
-    #endif
-
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
     NSLog(@"-- viewDidAppear: --");
     [super viewDidAppear:true];
+    NSLog(@"invh: %@", self.invh);
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     
-    NSLog(@"viewWillDisappear");
+    //NSLog(@"viewWillDisappear");
     [super viewWillDisappear:animated];
     [self.mobfoxVideoAd pause];
+    //self.mobfoxVideoAd = nil;
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+    if ([identifier isEqualToString:@"MainToGenericAdapter"] || [identifier isEqualToString:@"MainToAdapters"]) {
+        
+        NSLog(@"_lastIndexSelected.item: %ld", (long)_lastIndexSelected.item);
+        
+        if(perform_segue_enabled == true) {
+            
+            perform_segue_enabled = false;
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - (UIViewController *)viewControllerForPresentingModalView {
@@ -337,12 +264,16 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     return cell;
 }
 
+
 #pragma mark Collection View Delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell* cell = [collectionView  cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor lightGrayColor];
+    
+    _lastIndexSelected = indexPath;
+    
     
     switch (indexPath.item) {
             
@@ -351,11 +282,7 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
             [self hideAds:indexPath];
             [self.mobfoxVideoAd pause];
             self.mobfoxAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_BANNER_TEST;
-            
             [self.mobfoxAd loadAd];
-            [self.mobfoxAd loadAd];
-            [self.mobfoxAd loadAd];
-
             
             break;
             
@@ -363,7 +290,7 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 
             [self hideAds:indexPath];
             [self.mobfoxVideoAd pause];
-            self.mobfoxInterAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_INTER_TEST;
+            self.mobfoxInterAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_INTER;
             [self.mobfoxInterAd loadAd];
 
             break;
@@ -372,7 +299,7 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
             
             [self hideAds:indexPath];
             [self.mobfoxVideoAd pause];
-            self.mobfoxNativeAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_NATIVE_TEST;
+            self.mobfoxNativeAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_NATIVE;
             [self.mobfoxNativeAd loadAd];
             
             break;
@@ -402,10 +329,10 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
             self.mobfoxAdWaterfall.delegate = self;
             [self.view addSubview:self.mobfoxAdWaterfall];
             [self.mobfoxAdWaterfall loadAd];
+            
             break;
             
-            
-        case MFTestScrolView:
+        case MFTestScrolView: {
             
             [self hideAds:indexPath];
             
@@ -476,11 +403,36 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
                 //[self.mobfoxAd loadAd];
                 
             }];
-                        
+    
+    
             break;
+        }
+    
+        case MFTestGenericAdapter:
+            
+            [self hideAds:indexPath];
+            
+            perform_segue_enabled = true;
+            [self shouldPerformSegueWithIdentifier:@"MainToGenericAdapter" sender:nil];
+            [self performSegueWithIdentifier:@"MainToGenericAdapter" sender:nil];
+
+            break;
+            
+        case MFTestAdapters:
+            
+            [self hideAds:indexPath];
+            
+            perform_segue_enabled = true;
+            [self shouldPerformSegueWithIdentifier:@"MainToAdapters" sender:nil];
+            [self performSegueWithIdentifier:@"MainToAdapters" sender:nil];
+            
+            break;
+            
+       
+        
 
     }
-    
+  
 }
 
 - (void)loadAd1 {
@@ -545,8 +497,6 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     if(self.mobfoxInterAd.ready){
         [self.mobfoxInterAd show];
         
-       // [self performSelector:@selector(dismissIntAd) withObject:nil afterDelay:5.0];
-
     }
     
     if(self.mobfoxVideoInterstitial.ready){
@@ -594,9 +544,9 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     self.clickURL = [adData.clickURL absoluteURL];
     
     //adData.callToActionText
-    //NSLog(@"adData.assetHeadline: %@", adData.assetHeadline);
-    //NSLog(@"adData.assetDescription: %@", adData.assetDescription);
-    //NSLog(@"adData.callToActionText: %@", adData.callToActionText);
+    NSLog(@"adData.assetHeadline: %@", adData.assetHeadline);
+    NSLog(@"adData.assetDescription: %@", adData.assetDescription);
+    NSLog(@"adData.callToActionText: %@", adData.callToActionText);
     
     for (MobFoxNativeTracker *tracker in adData.trackersArray) {
         
@@ -641,61 +591,72 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 - (void)hideAds:(NSIndexPath *)indexPath {
     
     switch (indexPath.item) {
-        case 0:
+        case MFAdTypeBanner:
             self.mobfoxAd.hidden= NO;
             self.nativeAdView.hidden = YES;
             self.mobfoxVideoAd.hidden = YES;
 
             break;
             
-        case 1:
+        case MFAdTypeInterstitial:
             self.mobfoxAd.hidden= YES;
             self.nativeAdView.hidden = YES;
             self.mobfoxVideoAd.hidden = YES;
             
             break;
             
-        case 2:
+        case MFAdTypeNative:
             self.mobfoxAd.hidden= YES;
             self.nativeAdView.hidden = NO;
             self.mobfoxVideoAd.hidden = YES;
             
             break;
             
-        case 3:
+        case MFAdTypeVideoBanner:
+
             self.mobfoxAd.hidden= YES;
             self.nativeAdView.hidden = YES;
             self.mobfoxVideoAd.hidden = NO;
             
             break;
             
-        case 4:
+        case MFAdTypeVideoInterstitial:
             self.mobfoxAd.hidden= YES;
             self.nativeAdView.hidden = YES;
             self.mobfoxVideoAd.hidden = YES;
             
             break;
             
-        case 5:
+        case MFTestWaterfall:
             self.mobfoxAd.hidden= YES;
             self.nativeAdView.hidden = YES;
             self.mobfoxVideoAd.hidden = YES;
             
             break;
             
-        case 6:
+        case MFTestScrolView:
             self.mobfoxAd.hidden= YES;
             self.nativeAdView.hidden = YES;
             self.mobfoxVideoAd.hidden = YES;
             
             break;
             
-        case 7:
+        case MFTestGenericAdapter:
             self.mobfoxAd.hidden= YES;
             self.nativeAdView.hidden = YES;
             self.mobfoxVideoAd.hidden = YES;
             
             break;
+            
+        case MFTestAdapters:
+            self.mobfoxAd.hidden= YES;
+            self.nativeAdView.hidden = YES;
+            self.mobfoxVideoAd.hidden = YES;
+            
+            break;
+            
+   
+
             
         default:
             break;
@@ -706,33 +667,34 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 - (NSString *)adTitle:(NSIndexPath *)indexPath {
     
     switch (indexPath.item) {
-        case 0:
+        case MFAdTypeBanner:
             return @"Banner";
             break;
-        case 1:
+        case MFAdTypeInterstitial:
             return @"Interstitial";
             break;
-        case 2:
+        case MFAdTypeNative:
             return @"Native";
             break;
-        case 3:
+        case MFAdTypeVideoBanner:
             return @"Video(Bnr)";
             break;
-        case 4:
-            return @"Video(Inl)";
+        case MFAdTypeVideoInterstitial:
+            return @"Video(Int)";
             break;
-        case 5:
+        case MFTestWaterfall:
             return @"Waterfall";
             break;
-        case 6:
+        case MFTestScrolView:
             return @"ScrollView";
             break;
-        case 7:
-            return @"Custom Events";
+        case MFTestGenericAdapter:
+            return @"G-Adapter";
             break;
-        case 8:
+        case MFTestAdapters:
             return @"Adapters";
             break;
+            
             
         default:
             return @"";
@@ -743,32 +705,32 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 - (UIImage *)adImage:(NSIndexPath *)indexPath {
     
     switch (indexPath.item) {
-        case 0:
+        case MFAdTypeBanner:
             return [UIImage imageNamed:@"test_banner.png"];
             break;
-        case 1:
+        case MFAdTypeInterstitial:
             return [UIImage imageNamed:@"test_interstitial.png"];
             break;
-        case 2:
+        case MFAdTypeNative:
             return [UIImage imageNamed:@"test_native.png"];
             break;
-        case 3:
+        case MFAdTypeVideoBanner:
             return [UIImage imageNamed:@"test_video.png"];
             break;
-        case 4:
+        case MFAdTypeVideoInterstitial:
             return [UIImage imageNamed:@"test_video.png"];
             break;
-        case 5:
+        case MFTestWaterfall:
             return [UIImage imageNamed:@"test_banner.png"];
             break;
-        case 6:
+        case MFTestScrolView:
             return [UIImage imageNamed:@"test_interstitial.png"];
             break;
-        case 7:
-            return [UIImage imageNamed:@"test_interstitial.png"];
+        case MFTestGenericAdapter:
+            return [UIImage imageNamed:@"test_banner.png"];
             break;
-        case 8:
-            return [UIImage imageNamed:@"test_interstitial.png"];
+        case MFTestAdapters:
+            return [UIImage imageNamed:@"test_banner.png"];
             break;
 
             
@@ -816,6 +778,14 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     
     NSLog(@"Mopub -- interstitialDidFailToLoadAd ");
 
+}
+
+#pragma mark Mopub Native Delegate
+
+- (void)willPresentModalForNativeAd:(MPNativeAd *)nativeAd {
+    
+    NSLog(@"nativeAd.properties: %@", nativeAd.properties);
+    
 }
 
 #pragma mark Mopub Nativew Ad Delegate
@@ -987,6 +957,23 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     NSLog(@"somaNativeAdShouldEnterFullScreen");
     return NO;
 }
+
+#pragma mark MFTestAdapterBase Delegate
+
+- (void)MFTestAdapterBaseAdDidLoad:(UIView *)ad {
+    NSLog(@"MFTestAdapterBaseAdDidLoad");
+    ad.frame = CGRectMake( (SCREEN_WIDTH - ad.frame.size.width)/2, SCREEN_HEIGHT - ad.frame.size.height, ad.frame.size.width, ad.frame.size.height ); // set new
+    [self.view addSubview:ad];
+ 
+}
+
+- (void)MFTestAdapterBaseAdDidFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"MFTestAdapterBaseAdDidFailToReceiveAdWithError");
+    
+}
+
+
+
 
 @end
 

@@ -9,7 +9,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F4C071BC-076F-4488-B67F-FDF473E9AE1F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "4674E52FAC45692FA2AE5A542FD8E4B7C3605AFB" : "MobFox-iOS-SDK\/",
+    "4674E52FAC45692FA2AE5A542FD8E4B7C3605AFB" : "MobFox-iOS-SDK-Core-Lib\/",
     "2173F0C36E97953A57C108842F36BE930E155BFB" : "..\/Desktop\/MobFox-iOS-SDK-Core"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "DemoApp",

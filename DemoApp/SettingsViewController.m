@@ -25,7 +25,6 @@
 @property (nonatomic) BOOL isScannerReading;
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *videoPreviewLayer;
-
 @property (strong, nonatomic) MobFoxInterstitialAd *mobfoxInterAd;
 
 
@@ -48,24 +47,7 @@
                                      initWithTarget:self
                                      action:@selector(dismissKeyboard)]];
     
-    // interstitial test.
-    
-    /*** Interstitial ***/
-    
-    [MobFoxInterstitialAd locationServicesDisabled:true];
-    
-    //self.mobfoxInterAd = [[MobFoxInterstitialAd alloc] init];
-    //self.mobfoxInterAd = [[MobFoxInterstitialAd alloc] init:MOBFOX_HASH_INTER withRootViewController:nil];
-    
-    MainViewController *rootController =(MainViewController*)[[(AppDelegate*)
-                                                               [[UIApplication sharedApplication]delegate] window] rootViewController];
-    
-    self.mobfoxInterAd = [[MobFoxInterstitialAd alloc] init:MOBFOX_HASH_INTER withRootViewController:rootController];
-    
-    //self.mobfoxInterAd.ad.type = @"video";
-    self.mobfoxInterAd.delegate = self;
-    self.mobfoxInterAd.autoplay =  true;
-    [self.mobfoxInterAd loadAd];
+ 
 
 }
 
@@ -82,7 +64,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([[segue identifier] isEqualToString:@"SettingsToMainSegue"]) {
+    if ([[segue identifier] isEqualToString:@"SettingsToMain"]) {
         
         if (self.hashTextField.text.length > 0) {
             

@@ -1,0 +1,51 @@
+//
+//  MFDemoConstansts.h
+//  DemoApp
+//
+//  Created by Shimi Sheetrit on 1/11/17.
+//  Copyright © 2017 Matomy Media Group Ltd. All rights reserved.
+//
+
+#ifndef MFDemoConstansts_h
+#define MFDemoConstansts_h
+
+/*** invh ***/
+#define MOBFOX_HASH_BANNER @"bb6c5235b0b93a39ed4a8c61e48017de"
+#define MOBFOX_HASH_INTER @"bb6c5235b0b93a39ed4a8c61e48017de"
+#define MOBFOX_HASH_NATIVE @"de60c6fc1a2d8c30921423b276ee3c97"
+#define MOBFOX_HASH_VIDEO @"80187188f458cfde788d961b6882fd53"
+#define MOBFOX_HASH_AUDIO @"75f994b45ca31b454addc8b808d59135"
+
+#define MOBFOX_HASH_BANNER_TEST @"fe96717d9875b9da4339ea5367eff1ec"
+#define MOBFOX_HASH_INTER_TEST @"267d72ac3f77a3f447b32cf7ebf20673"
+#define MOBFOX_HASH_NATIVE_TEST @"80187188f458cfde788d961b6882fd53"
+#define MOBFOX_HASH_VIDEO_TEST @"80187188f458cfde788d961b6882fd53"
+#define MOBFOX_HASH_AUDIO_TEST @"75f994b45ca31b454addc8b808d59135"
+
+#define ADMOB_HASH_GAD_BANNER @"ca-app-pub-6224828323195096/4116386766"
+#define ADMOB_HASH_GAD_INTER @"ca-app-pub-6224828323195096/7876284361"
+#define ADMOB_HASH_GAD_NATIVE @"ca-app-pub-6224828323195096/6049137964"
+
+#define ADMOB_HASH_DFP_BANNER @"ca-app-pub-6224828323195096/5240875564"
+#define ADMOB_HASH_DFP_INTER @"ca-app-pub-6224828323195096/7876284361"
+#define ADMOB_HASH_DFP_NATIVE @""
+
+#define SMAATO_PUBLISHER_ID_BANNER @"1100017255"
+#define SMAATO_ADSPACE_ID_BANNER @"130079630"
+
+#define SMAATO_PUBLISHER_ID_INTER @"1100017255"
+#define SMAATO_ADSPACE_ID_INTER @"130079631"
+
+#define SMAATO_PUBLISHER_ID_NATIVE @"0"
+#define SMAATO_ADSPACE_ID_NATIVE @"3075"
+
+#define MOPUB_HASH_NATIVE @"ac0f139a2d9544fface76d06e27bc02a"
+#define MOPUB_HASH_BANNER @"234dd5a1b1bf4a5f9ab50431f9615784"
+#define MOPUB_HASH_INTER @"a5277fa1fd57418b867cfaa949df3b4a"
+
+/*** screen size ***/
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#endif /* MFDemoConstansts_h */
