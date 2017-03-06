@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/*
 /// These are the types of animation we employ for transitions between two mediated ads.
 typedef NS_ENUM(NSInteger, GADMBannerAnimationType) {
   kGADMBannerAnimationTypeNone = 0,            ///< No animation.
@@ -19,3 +19,4 @@ typedef NS_ENUM(NSInteger, GADMBannerAnimationType) {
   kGADMBannerAnimationTypeFadeIn = 7,          ///< Fade in.
   kGADMBannerAnimationTypeRandom = 8,          ///< Random animation.
 };
+*/
