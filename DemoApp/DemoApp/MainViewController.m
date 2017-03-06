@@ -148,7 +148,7 @@ static bool perform_segue_enabled;
     self.mobfoxAd = [[MobFoxAd alloc] init:MOBFOX_HASH_BANNER_TEST withFrame:self.bannerAdRect];
     self.mobfoxAd.delegate = self;
     self.mobfoxAd.refresh = [NSNumber numberWithInt:AD_REFRESH];
-    self.mobfoxAd.adspace_strict = false;
+    //self.mobfoxAd.adspace_strict = false;
     [self.view addSubview:self.mobfoxAd];
     
 

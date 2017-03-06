@@ -2183,13 +2183,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = AV662668AP;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)",
-					"$(PROJECT_DIR)/othernetworks",
-					"$(PROJECT_DIR)/MobFoxSDKCore.embeddedframework",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/othernetworks";
-				HEADER_SEARCH_PATHS = "/Users/shimisheetrit/Developer/MobFox-iOS-SDK-Core";
+				HEADER_SEARCH_PATHS = "${SRCROOT}";
 				INFOPLIST_FILE = DemoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2216,13 +2212,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = AV662668AP;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)",
-					"$(PROJECT_DIR)/othernetworks",
-					"$(PROJECT_DIR)/MobFoxSDKCore.embeddedframework",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/othernetworks";
-				HEADER_SEARCH_PATHS = "/Users/shimisheetrit/Developer/MobFox-iOS-SDK-Core";
+				HEADER_SEARCH_PATHS = "${SRCROOT}";
 				INFOPLIST_FILE = DemoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
