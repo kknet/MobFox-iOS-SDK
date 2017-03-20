@@ -293,8 +293,6 @@
 		86F8A2CD1C79C1F200BDD8FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F8A2CC1C79C1F200BDD8FD /* MobileCoreServices.framework */; };
 		86F8A2D11C79C20D00BDD8FD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F8A2D01C79C20D00BDD8FD /* Social.framework */; };
 		E7AF7D161E263EDF00BD4296 /* GADMAdapterMobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AF7CC41E263EDF00BD4296 /* GADMAdapterMobFox.m */; };
-		E7AF7D171E263EDF00BD4296 /* GADMNativeAdapterMobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AF7CC61E263EDF00BD4296 /* GADMNativeAdapterMobFox.m */; };
-		E7AF7D181E263EDF00BD4296 /* MFMediatedNativeContentAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AF7CC81E263EDF00BD4296 /* MFMediatedNativeContentAd.m */; };
 		E7AF7D191E263EDF00BD4296 /* MoPubAdapterMobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AF7CCB1E263EDF00BD4296 /* MoPubAdapterMobFox.m */; };
 		E7AF7D1A1E263EDF00BD4296 /* MoPubInterstitialAdapterMobFox.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AF7CCD1E263EDF00BD4296 /* MoPubInterstitialAdapterMobFox.m */; };
 		E7AF7D1B1E263EDF00BD4296 /* MoPubNative.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AF7CCF1E263EDF00BD4296 /* MoPubNative.m */; };
@@ -774,10 +772,6 @@
 		86F8A2D01C79C20D00BDD8FD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E7AF7CC31E263EDF00BD4296 /* GADMAdapterMobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMAdapterMobFox.h; sourceTree = "<group>"; };
 		E7AF7CC41E263EDF00BD4296 /* GADMAdapterMobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADMAdapterMobFox.m; sourceTree = "<group>"; };
-		E7AF7CC51E263EDF00BD4296 /* GADMNativeAdapterMobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMNativeAdapterMobFox.h; sourceTree = "<group>"; };
-		E7AF7CC61E263EDF00BD4296 /* GADMNativeAdapterMobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADMNativeAdapterMobFox.m; sourceTree = "<group>"; };
-		E7AF7CC71E263EDF00BD4296 /* MFMediatedNativeContentAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFMediatedNativeContentAd.h; sourceTree = "<group>"; };
-		E7AF7CC81E263EDF00BD4296 /* MFMediatedNativeContentAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFMediatedNativeContentAd.m; sourceTree = "<group>"; };
 		E7AF7CCA1E263EDF00BD4296 /* MoPubAdapterMobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubAdapterMobFox.h; sourceTree = "<group>"; };
 		E7AF7CCB1E263EDF00BD4296 /* MoPubAdapterMobFox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubAdapterMobFox.m; sourceTree = "<group>"; };
 		E7AF7CCC1E263EDF00BD4296 /* MoPubInterstitialAdapterMobFox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubInterstitialAdapterMobFox.h; sourceTree = "<group>"; };
@@ -1591,10 +1585,6 @@
 			children = (
 				E7AF7CC31E263EDF00BD4296 /* GADMAdapterMobFox.h */,
 				E7AF7CC41E263EDF00BD4296 /* GADMAdapterMobFox.m */,
-				E7AF7CC51E263EDF00BD4296 /* GADMNativeAdapterMobFox.h */,
-				E7AF7CC61E263EDF00BD4296 /* GADMNativeAdapterMobFox.m */,
-				E7AF7CC71E263EDF00BD4296 /* MFMediatedNativeContentAd.h */,
-				E7AF7CC81E263EDF00BD4296 /* MFMediatedNativeContentAd.m */,
 			);
 			path = AdMob;
 			sourceTree = "<group>";
@@ -1968,7 +1958,6 @@
 				86514A841E6C5A0E003F4967 /* MPHTMLInterstitialViewController.m in Sources */,
 				86514AB41E6C5A0E003F4967 /* MPVASTInline.m in Sources */,
 				86514A751E6C5A0E003F4967 /* MPProgressOverlayView.m in Sources */,
-				E7AF7D181E263EDF00BD4296 /* MFMediatedNativeContentAd.m in Sources */,
 				86514AF31E6C5A0E003F4967 /* MOPUBPlayerView.m in Sources */,
 				86514AAB1E6C5A0E003F4967 /* MPSessionTracker.m in Sources */,
 				86514A711E6C5A0E003F4967 /* MPClosableView.m in Sources */,
@@ -2010,7 +1999,6 @@
 				86514AAE1E6C5A0E003F4967 /* MPUserInteractionGestureRecognizer.m in Sources */,
 				86514ABA1E6C5A0E003F4967 /* MPVASTResource.m in Sources */,
 				86514ADD1E6C5A0E003F4967 /* MPNativeAdError.m in Sources */,
-				E7AF7D171E263EDF00BD4296 /* GADMNativeAdapterMobFox.m in Sources */,
 				86514A821E6C5A0E003F4967 /* MPHTMLBannerCustomEvent.m in Sources */,
 				86514AA81E6C5A0E003F4967 /* MPLogging.m in Sources */,
 				86514AB31E6C5A0E003F4967 /* MPVASTIndustryIcon.m in Sources */,

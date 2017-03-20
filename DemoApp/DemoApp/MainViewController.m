@@ -159,7 +159,7 @@ static bool perform_segue_enabled;
     MainViewController *rootController =(MainViewController*)[[(AppDelegate*)
                                                                [[UIApplication sharedApplication]delegate] window] rootViewController];
     
-    self.mobfoxInterAd = [[MobFoxInterstitialAd alloc] init:MOBFOX_HASH_INTER withRootViewController:rootController];
+    self.mobfoxInterAd = [[MobFoxInterstitialAd alloc] init:MOBFOX_HASH_INTER_TEST withRootViewController:rootController];
     self.mobfoxInterAd.delegate = self;
     
     
@@ -167,7 +167,7 @@ static bool perform_segue_enabled;
     
     [MobFoxNativeAd locationServicesDisabled:true];
     
-    self.mobfoxNativeAd = [[MobFoxNativeAd alloc] init:MOBFOX_HASH_NATIVE];
+    self.mobfoxNativeAd = [[MobFoxNativeAd alloc] init:MOBFOX_HASH_NATIVE_TEST];
     self.mobfoxNativeAd.delegate = self;
     
     
@@ -290,7 +290,7 @@ static bool perform_segue_enabled;
 
             [self hideAds:indexPath];
             [self.mobfoxVideoAd pause];
-            self.mobfoxInterAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_INTER;
+            self.mobfoxInterAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_INTER_TEST;
             [self.mobfoxInterAd loadAd];
 
             break;
@@ -299,7 +299,7 @@ static bool perform_segue_enabled;
             
             [self hideAds:indexPath];
             [self.mobfoxVideoAd pause];
-            self.mobfoxNativeAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_NATIVE;
+            self.mobfoxNativeAd.invh = self.invh.length > 0 ? self.invh: MOBFOX_HASH_NATIVE_TEST;
             [self.mobfoxNativeAd loadAd];
             
             break;
