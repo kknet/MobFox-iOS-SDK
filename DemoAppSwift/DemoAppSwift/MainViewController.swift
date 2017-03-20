@@ -57,18 +57,18 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.innerNativeAdView.addGestureRecognizer(recognizer)
         
         // Oreintation dependent in iOS 8 and later.
-        let screenWidth = UIScreen.main().bounds.size.width
-        let screenHeight = UIScreen.main().bounds.size.height
-        let bannerWidth = CGFloat(UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 728.0 : 320.0)
-        let bannerHeight = CGFloat(UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 90.0 : 50.0)
-        let videoWidth = CGFloat(UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 500.0 : 300.0)
-        let videoHeight = CGFloat(UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 450.0 : 250.0)
+        let screenWidth = UIScreen.main.bounds.size.width
+        let screenHeight = UIScreen.main.bounds.size.height
+        let bannerWidth = CGFloat(UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 728.0 : 320.0)
+        let bannerHeight = CGFloat(UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 90.0 : 50.0)
+        let videoWidth = CGFloat(UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 500.0 : 300.0)
+        let videoHeight = CGFloat(UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 450.0 : 250.0)
 
         /*** Banner ***/
         let rect = CGRect(origin: CGPoint(x: (screenWidth-bannerWidth)/2, y: screenHeight-bannerHeight), size: CGSize(width: bannerWidth, height: bannerHeight) )
         mobfoxAd = MobFoxAd(InventoryHash.MobFoxHashBanner, withFrame: rect)
         mobfoxAd.delegate = self
-        mobfoxAd.refresh = adRefresh
+        mobfoxAd.refresh = adRefresh as NSNumber!
         self.view.addSubview(mobfoxAd)
         
         /*** Interstitial ***/
@@ -80,7 +80,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         mobfoxNativeAd.delegate = self
         
         /*** Video ***/
-        let videoTopMargin = CGFloat(UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 200.0 : 80.0)
+        let videoTopMargin = CGFloat(UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 200.0 : 80.0)
         self.adVideoRect = CGRect(x: (screenWidth - videoWidth)/2, y: self.collectionView.frame.size.height + videoTopMargin, width: videoWidth, height: videoHeight)
         self.initVideoAd()
         
@@ -196,7 +196,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.cellForItem(at: indexPath)
         if cell != nil {
-            cell!.backgroundColor = UIColor.lightGray()
+            cell!.backgroundColor = UIColor.lightGray
         }
         
         switch (indexPath as NSIndexPath).item {
@@ -210,8 +210,8 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.hideAds(indexPath)
             self.pauseAdRefresh()
             self.removeVideoAd()
-            if self.invh != nil {self.mobfoxInterAd.ad.invh = self.invh!.characters.count > 0  ? self.invh! : InventoryHash.MobFoxHashInter}
-            self.mobfoxInterAd.loadAd()
+            if self.invh != nil {self.mobfoxInterAd.invh = self.invh!.characters.count > 0  ? self.invh! : InventoryHash.MobFoxHashInter}
+            self.mobfoxInterAd.load()
 
         case 2:
             self.hideAds(indexPath)
@@ -239,7 +239,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.cellForItem(at: indexPath)
         if cell != nil {
-            cell?.backgroundColor = UIColor.white()
+            cell?.backgroundColor = UIColor.white
         }
         
     }
@@ -253,9 +253,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.image.image = self.adImage(indexPath)
 
         if cell.isSelected {
-            cell.backgroundColor = UIColor.lightGray()
+            cell.backgroundColor = UIColor.lightGray
         } else {
-            cell.backgroundColor = UIColor.white() // Default color
+            cell.backgroundColor = UIColor.white // Default color
         }
         
         return cell
@@ -316,25 +316,21 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         case 0:
             self.mobfoxAd.isHidden = false
-            self.mobfoxInterAd.ad.isHidden = true
             self.nativeAdView.isHidden = true
             if self.mobfoxVideoAd != nil {self.mobfoxVideoAd.isHidden = true}
             
         case 1:
             self.mobfoxAd.isHidden = true
-            self.mobfoxInterAd.ad.isHidden = false
             self.nativeAdView.isHidden = true
             if self.mobfoxVideoAd != nil {self.mobfoxVideoAd.isHidden = true}
             
         case 2:
             self.mobfoxAd.isHidden = true
-            self.mobfoxInterAd.ad.isHidden = true
             self.nativeAdView.isHidden = false
             if self.mobfoxVideoAd != nil {self.mobfoxVideoAd.isHidden = true}
             
         case 3:
             self.mobfoxAd.isHidden = true
-            self.mobfoxInterAd.ad.isHidden = true
             self.nativeAdView.isHidden = true
             if self.mobfoxVideoAd != nil {self.mobfoxVideoAd.isHidden = true}
             
@@ -396,7 +392,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     private func handleGesture( _ gestureRecognizer: UIGestureRecognizer) {
         
         if (self.clickURL != nil) {
-            UIApplication.shared().openURL(self.clickURL!)
+            UIApplication.shared.openURL(self.clickURL!)
         }
     }
     

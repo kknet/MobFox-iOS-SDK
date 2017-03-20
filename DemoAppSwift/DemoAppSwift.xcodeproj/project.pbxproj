@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86012DCE1E801036009CA963 /* MobFoxSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86012DCD1E801036009CA963 /* MobFoxSDKCore.framework */; };
 		86186AEC1C7B739900D406BB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865BD1B51C73728400F180D8 /* MainViewController.swift */; };
 		86186AED1C7B739900D406BB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865BD1B51C73728400F180D8 /* MainViewController.swift */; };
 		864081781C9EF8B9002BD1E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 864081771C9EF8B9002BD1E4 /* AudioToolbox.framework */; };
@@ -39,12 +40,6 @@
 		86A31C1D1CA28AC900FD6959 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A31C1C1CA28AC900FD6959 /* GoogleMobileAds.framework */; };
 		86A31C1E1CA28AC900FD6959 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A31C1C1CA28AC900FD6959 /* GoogleMobileAds.framework */; };
 		86A31C1F1CA28AC900FD6959 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A31C1C1CA28AC900FD6959 /* GoogleMobileAds.framework */; };
-		86B8DF0F1D86A6AE00FEF95A /* MobFoxSDKCore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86B8DF0D1D86A6AE00FEF95A /* MobFoxSDKCore.bundle */; };
-		86B8DF101D86A6AE00FEF95A /* MobFoxSDKCore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86B8DF0D1D86A6AE00FEF95A /* MobFoxSDKCore.bundle */; };
-		86B8DF111D86A6AE00FEF95A /* MobFoxSDKCore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86B8DF0D1D86A6AE00FEF95A /* MobFoxSDKCore.bundle */; };
-		86B8DF121D86A6AE00FEF95A /* MobFoxSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B8DF0E1D86A6AE00FEF95A /* MobFoxSDKCore.framework */; };
-		86B8DF131D86A6AE00FEF95A /* MobFoxSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B8DF0E1D86A6AE00FEF95A /* MobFoxSDKCore.framework */; };
-		86B8DF141D86A6AE00FEF95A /* MobFoxSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B8DF0E1D86A6AE00FEF95A /* MobFoxSDKCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86012DCD1E801036009CA963 /* MobFoxSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobFoxSDKCore.framework; path = ../MobFoxSDKCore.embeddedframework/MobFoxSDKCore.framework; sourceTree = "<group>"; };
 		864081771C9EF8B9002BD1E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		864081791C9EF8C3002BD1E4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8640817B1C9EF8D4002BD1E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,8 +89,6 @@
 		865BD1F21C7495B100F180D8 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		865BD2311C74A72B00F180D8 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		86A31C1C1CA28AC900FD6959 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		86B8DF0D1D86A6AE00FEF95A /* MobFoxSDKCore.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MobFoxSDKCore.bundle; sourceTree = "<group>"; };
-		86B8DF0E1D86A6AE00FEF95A /* MobFoxSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobFoxSDKCore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +96,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86012DCE1E801036009CA963 /* MobFoxSDKCore.framework in Frameworks */,
 				8640818C1C9EF941002BD1E4 /* SystemConfiguration.framework in Frameworks */,
 				8640818A1C9EF935002BD1E4 /* StoreKit.framework in Frameworks */,
 				864081881C9EF92C002BD1E4 /* MessageUI.framework in Frameworks */,
-				86B8DF121D86A6AE00FEF95A /* MobFoxSDKCore.framework in Frameworks */,
 				864081861C9EF920002BD1E4 /* MediaPlayer.framework in Frameworks */,
 				864081841C9EF90C002BD1E4 /* EventKitUI.framework in Frameworks */,
 				864081821C9EF8FC002BD1E4 /* EventKit.framework in Frameworks */,
@@ -124,7 +118,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				86A31C1E1CA28AC900FD6959 /* GoogleMobileAds.framework in Frameworks */,
-				86B8DF131D86A6AE00FEF95A /* MobFoxSDKCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				86A31C1F1CA28AC900FD6959 /* GoogleMobileAds.framework in Frameworks */,
-				86B8DF141D86A6AE00FEF95A /* MobFoxSDKCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +135,6 @@
 		865BD1A71C73728400F180D8 = {
 			isa = PBXGroup;
 			children = (
-				86B8DF0C1D86A6AE00FEF95A /* MobFoxSDKCore.embeddedframework */,
 				865BD2351C74CFC900F180D8 /* Frameworks */,
 				865BD1B21C73728400F180D8 /* DemoAppSwift */,
 				865BD1C71C73728400F180D8 /* DemoAppSwiftTests */,
@@ -206,6 +197,7 @@
 		865BD2351C74CFC900F180D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				86012DCD1E801036009CA963 /* MobFoxSDKCore.framework */,
 				86A31C1C1CA28AC900FD6959 /* GoogleMobileAds.framework */,
 				8640818B1C9EF941002BD1E4 /* SystemConfiguration.framework */,
 				864081891C9EF935002BD1E4 /* StoreKit.framework */,
@@ -221,15 +213,6 @@
 				865BD1F21C7495B100F180D8 /* AdSupport.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		86B8DF0C1D86A6AE00FEF95A /* MobFoxSDKCore.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				86B8DF0D1D86A6AE00FEF95A /* MobFoxSDKCore.bundle */,
-				86B8DF0E1D86A6AE00FEF95A /* MobFoxSDKCore.framework */,
-			);
-			path = MobFoxSDKCore.embeddedframework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +325,6 @@
 			files = (
 				865BD1E21C7372F100F180D8 /* Main.storyboard in Resources */,
 				865BD1BE1C73728400F180D8 /* LaunchScreen.storyboard in Resources */,
-				86B8DF0F1D86A6AE00FEF95A /* MobFoxSDKCore.bundle in Resources */,
 				865BD1BB1C73728400F180D8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +333,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86B8DF101D86A6AE00FEF95A /* MobFoxSDKCore.bundle in Resources */,
 				865BD1E31C7372F100F180D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,7 +341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86B8DF111D86A6AE00FEF95A /* MobFoxSDKCore.bundle in Resources */,
 				865BD1E41C7372F100F180D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,40 +494,38 @@
 		865BD1D91C73728400F180D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MobFoxSDKCore.embeddedframework",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				HEADER_SEARCH_PATHS = "${SRCROOT}";
 				INFOPLIST_FILE = DemoAppSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matomy.DemoAppSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		865BD1DA1C73728400F180D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MobFoxSDKCore.embeddedframework",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				HEADER_SEARCH_PATHS = "${SRCROOT}";
 				INFOPLIST_FILE = DemoAppSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.matomy.DemoAppSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

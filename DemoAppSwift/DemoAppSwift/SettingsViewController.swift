@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         self.startButton.layer.cornerRadius = 4.0
         self.statusLabel.text = "QR Code Reader is not yet running..."
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: "dismissKeyboard"))
+        self.view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(SettingsViewController.dismissKeyboard)))
         
     }
     
@@ -48,13 +48,13 @@ class SettingsViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "SettingsToMainSegue") {
             
-            if(self.hashTextField.text?.characters.count > 0) {
+            if((self.hashTextField.text?.characters.count)! > 0) {
                 
-                let vc = segue.destinationViewController as! MainViewController
+                let vc = segue.destination as! MainViewController
                 vc.invh = self.hashTextField.text!
                 
             }
@@ -106,7 +106,7 @@ class SettingsViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         self.captureSession.addOutput(captureMetadataOutput)
         
         var dispatchQueue: DispatchQueue
-        dispatchQueue = DispatchQueue(label: "myQueue", attributes: DispatchQueueAttributes.serial)
+        dispatchQueue = DispatchQueue(label: "myQueue")
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatchQueue)
         captureMetadataOutput.metadataObjectTypes = NSArray.init(object: AVMetadataObjectTypeQRCode) as [AnyObject]
         
@@ -129,7 +129,7 @@ class SettingsViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     
     //MARK: AVCaptureMetadataOutputObjectsDelegate
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!,
+    private func captureOutput(_ captureOutput: AVCaptureOutput!,
         didOutputMetadataObjects metadataObjects: [AnyObject]!,
         from connection: AVCaptureConnection!) {
             
@@ -139,8 +139,10 @@ class SettingsViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 
                 if(metadataObj.type == AVMetadataObjectTypeQRCode) {
                     
-                    self.statusLabel.performSelector(onMainThread: "setText:", with: "QR Code Reader is not running...", waitUntilDone: false)
-                    self.performSelector(onMainThread: "stopReading", with: nil, waitUntilDone: false)
+                    //self.statusLabel.performSelector(onMainThread: #selector(setter: UITableViewCell.textLabel), with: "QR Code Reader is not running...", waitUntilDone: false)
+                    
+                    self.statusLabel.text = "QR Code Reader is not running..."
+                    self.performSelector(onMainThread: #selector(SettingsViewController.stopReading), with: nil, waitUntilDone: false)
                     
                     DispatchQueue.main.async(execute: {
                
