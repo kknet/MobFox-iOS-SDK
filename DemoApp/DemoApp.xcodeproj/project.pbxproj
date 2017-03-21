@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8603F7D11CF2EFE400CAE120 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86186A281C79F0CB00D406BB /* libxml2.tbd */; };
+		86104BA71E819BB200DC1A9E /* MobFoxSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86104BA61E819B8700DC1A9E /* MobFoxSDKCore.framework */; };
 		861204F01D084DB000EDDAF8 /* response_waterfalls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 861204EF1D084DB000EDDAF8 /* response_waterfalls.txt */; };
 		861204F11D084DB000EDDAF8 /* response_waterfalls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 861204EF1D084DB000EDDAF8 /* response_waterfalls.txt */; };
 		861204F21D084DB000EDDAF8 /* response_waterfalls.txt in Resources */ = {isa = PBXBuildFile; fileRef = 861204EF1D084DB000EDDAF8 /* response_waterfalls.txt */; };
@@ -201,7 +202,6 @@
 		86514B131E6C5A0F003F4967 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86514A581E6C5A0D003F4967 /* StartApp.bundle */; };
 		86514B141E6C5A0F003F4967 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86514A591E6C5A0E003F4967 /* StartApp.framework */; };
 		86514B151E6C5A0F003F4967 /* Supersonic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86514A5A1E6C5A0E003F4967 /* Supersonic.framework */; };
-		86514B1D1E6C5DB6003F4967 /* MobFoxSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86514B1C1E6C5DB6003F4967 /* MobFoxSDKCore.framework */; };
 		865BD0DF1C68CF3500F180D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865BD0DE1C68CF3500F180D8 /* AVFoundation.framework */; };
 		865BD1501C6CED9C00F180D8 /* NativeAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865BD14E1C6CED9C00F180D8 /* NativeAdViewController.m */; };
 		865BD1511C6CED9C00F180D8 /* NativeAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865BD14E1C6CED9C00F180D8 /* NativeAdViewController.m */; };
@@ -325,6 +325,7 @@
 		860C0BCD1C95738D0001EEF3 /* libSystem.B.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.B.dylib; path = ../../../../../usr/lib/libSystem.B.dylib; sourceTree = "<group>"; };
 		860C0BCF1C9573D50001EEF3 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		860C0FB71C96B9B00001EEF3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		86104BA61E819B8700DC1A9E /* MobFoxSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobFoxSDKCore.framework; sourceTree = "<group>"; };
 		861204EF1D084DB000EDDAF8 /* response_waterfalls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = response_waterfalls.txt; sourceTree = "<group>"; };
 		861695E81E27DB66007FBC3A /* AdaptersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdaptersViewController.h; sourceTree = "<group>"; };
 		861695E91E27DB66007FBC3A /* AdaptersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdaptersViewController.m; sourceTree = "<group>"; };
@@ -705,7 +706,6 @@
 		86514A581E6C5A0D003F4967 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StartApp.bundle; sourceTree = "<group>"; };
 		86514A591E6C5A0E003F4967 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StartApp.framework; sourceTree = "<group>"; };
 		86514A5A1E6C5A0E003F4967 /* Supersonic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Supersonic.framework; sourceTree = "<group>"; };
-		86514B1C1E6C5DB6003F4967 /* MobFoxSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobFoxSDKCore.framework; sourceTree = "<group>"; };
 		865BD0DE1C68CF3500F180D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		865BD14D1C6CED9C00F180D8 /* NativeAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NativeAdViewController.h; path = ../NativeAdViewController.h; sourceTree = "<group>"; };
 		865BD14E1C6CED9C00F180D8 /* NativeAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NativeAdViewController.m; path = ../NativeAdViewController.m; sourceTree = "<group>"; };
@@ -798,6 +798,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86104BA71E819BB200DC1A9E /* MobFoxSDKCore.framework in Frameworks */,
 				86514A5F1E6C5A0E003F4967 /* GoogleMobileAds.framework in Frameworks */,
 				8603F7D11CF2EFE400CAE120 /* libxml2.tbd in Frameworks */,
 				86514B141E6C5A0F003F4967 /* StartApp.framework in Frameworks */,
@@ -821,7 +822,6 @@
 				86F8A2C91C79BC9700BDD8FD /* CoreBluetooth.framework in Frameworks */,
 				86F8A2C71C79BC6900BDD8FD /* iAd.framework in Frameworks */,
 				86F8A2BD1C79BBF400BDD8FD /* QuartzCore.framework in Frameworks */,
-				86514B1D1E6C5DB6003F4967 /* MobFoxSDKCore.framework in Frameworks */,
 				86F8A2C31C79BC3200BDD8FD /* UIKit.framework in Frameworks */,
 				86514A5C1E6C5A0E003F4967 /* AppLovinSDK.framework in Frameworks */,
 				86F8A2B91C79BBDC00BDD8FD /* Foundation.framework in Frameworks */,
@@ -849,6 +849,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86104BA51E819B8700DC1A9E /* MobFoxSDKCore.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				86104BA61E819B8700DC1A9E /* MobFoxSDKCore.framework */,
+			);
+			name = MobFoxSDKCore.embeddedframework;
+			path = ../MobFoxSDKCore.embeddedframework;
+			sourceTree = "<group>";
+		};
 		865148CF1E6C5A0D003F4967 /* othernetworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1405,17 +1414,10 @@
 			path = Internal;
 			sourceTree = "<group>";
 		};
-		86514B1B1E6C5DB6003F4967 /* MobFoxSDKCore.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				86514B1C1E6C5DB6003F4967 /* MobFoxSDKCore.framework */,
-			);
-			path = MobFoxSDKCore.embeddedframework;
-			sourceTree = "<group>";
-		};
 		865BD0E01C68DF7D00F180D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				86104BA51E819B8700DC1A9E /* MobFoxSDKCore.embeddedframework */,
 				860C0FB71C96B9B00001EEF3 /* libz.tbd */,
 				86186A281C79F0CB00D406BB /* libxml2.tbd */,
 				860C0BCF1C9573D50001EEF3 /* libz.1.dylib */,
@@ -1458,7 +1460,6 @@
 		86891E051C5FA8250098C602 = {
 			isa = PBXGroup;
 			children = (
-				86514B1B1E6C5DB6003F4967 /* MobFoxSDKCore.embeddedframework */,
 				865148CF1E6C5A0D003F4967 /* othernetworks */,
 				E7AF7CC11E263EDE00BD4296 /* Adapters */,
 				865BD0E01C68DF7D00F180D8 /* Frameworks */,
