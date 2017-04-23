@@ -38,7 +38,11 @@
 		</data>
 		<key>Headers/MobFoxAd.h</key>
 		<data>
-		bGFd1BBdGEGSxJ6xaoOK+hfRmuk=
+		gcjLQRJnMCTJO6tIogFUMiVPk0w=
+		</data>
+		<key>Headers/MobFoxAdTest.h</key>
+		<data>
+		FjW65MipV+jJb5GAWnGvSLpq4HM=
 		</data>
 		<key>Headers/MobFoxCustomEvent.h</key>
 		<data>
@@ -74,7 +78,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		FuGbw+MC1ZQe/QLNBxRhQtikpOk=
+		z8X+ay8rMglOB8DKOy88r18c5Bc=
 		</data>
 		<key>LICENSE</key>
 		<data>
@@ -83,6 +87,14 @@
 		<key>Modules/module.modulemap</key>
 		<data>
 		3bj6qNACgeYW2c9FVFfTkTTGbXc=
+		</data>
+		<key>banner_app_store_redirect.xml</key>
+		<data>
+		nRNCeWPWav0JaT7ALt0af8LgyZI=
+		</data>
+		<key>touch_event.xml</key>
+		<data>
+		QV0aivMkki1t0dtm/zeNxGrg1qc=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -179,11 +191,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			bGFd1BBdGEGSxJ6xaoOK+hfRmuk=
+			gcjLQRJnMCTJO6tIogFUMiVPk0w=
 			</data>
 			<key>hash2</key>
 			<data>
-			s/eXJe0aDVrY/Eaj6hzXVmbeX/cIIpr3zfEGy7C87Zo=
+			IhUuGcqIMC1abwp1qdfAhKyXcolUh+dM4R+r/eJ1sDw=
+			</data>
+		</dict>
+		<key>Headers/MobFoxAdTest.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			FjW65MipV+jJb5GAWnGvSLpq4HM=
+			</data>
+			<key>hash2</key>
+			<data>
+			kuU7+89S8aEpYaX9ZmeFu6J+S9PJf5eaU9Lb1XNsP7E=
 			</data>
 		</dict>
 		<key>Headers/MobFoxCustomEvent.h</key>
@@ -294,6 +317,28 @@
 			<key>hash2</key>
 			<data>
 			TXczdGYfhw04O+FYYgEZm/4Z+6a+Na5r9mJdPyh/f9Q=
+			</data>
+		</dict>
+		<key>banner_app_store_redirect.xml</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			nRNCeWPWav0JaT7ALt0af8LgyZI=
+			</data>
+			<key>hash2</key>
+			<data>
+			D8qCfQFn41zwy6zq+X8W0r/nixE5IQg9Npw3llfsqqY=
+			</data>
+		</dict>
+		<key>touch_event.xml</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			QV0aivMkki1t0dtm/zeNxGrg1qc=
+			</data>
+			<key>hash2</key>
+			<data>
+			L4rPQtGnU8nYgiCRk/daqCXOPkRo4eiai0ZJd/8Os8w=
 			</data>
 		</dict>
 	</dict>

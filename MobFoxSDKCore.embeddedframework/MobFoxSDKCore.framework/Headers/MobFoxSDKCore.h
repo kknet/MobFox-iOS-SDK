@@ -17,6 +17,8 @@ FOUNDATION_EXPORT const unsigned char MobFoxSDKCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MobFoxSDKCore/PublicHeader.h>
 #import "MobFoxAd.h"
+#import "MobFoxAdTest.h"
+
 #import "MobFoxInterstitialAd.h"
 #import "MobFoxNativeAd.h"
 #import "MobFoxCustomEvent.h"

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="kvZ-yQ-Jrh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="kvZ-yQ-Jrh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -509,12 +509,12 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" id="D22-cM-wLR" userLabel="Inner Native Ad View">
-                                        <rect key="frame" x="8" y="141" width="312" height="81"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="D22-cM-wLR" userLabel="Inner Native Ad View">
+                                        <rect key="frame" x="0.0" y="141" width="320" height="81"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="n9i-HD-feW">
-                                                <rect key="frame" x="227" y="0.0" width="70" height="50"/>
+                                                <rect key="frame" x="235" y="0.0" width="70" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6dP-IO-YvT">
@@ -567,6 +567,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ads" id="vFD-S2-hAf" userLabel="Ads"/>
                     <connections>
+                        <outlet property="innerNativeAdView" destination="D22-cM-wLR" id="mLm-n4-mSf"/>
                         <outlet property="nativeAdDescription" destination="JIT-Ch-dpE" id="ZaR-0S-hIS"/>
                         <outlet property="nativeAdImage" destination="n9i-HD-feW" id="o5f-8P-BZY"/>
                         <outlet property="nativeAdTitle" destination="6dP-IO-YvT" id="UVS-MV-iGi"/>

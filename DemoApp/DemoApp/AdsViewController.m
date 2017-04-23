@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 @property (weak, nonatomic) IBOutlet UIImageView *nativeAdImage;
 @property (weak, nonatomic) IBOutlet UILabel *nativeAdDescription;
 @property (weak, nonatomic) IBOutlet UIView *nativeAdView;
+@property (weak, nonatomic) IBOutlet UIView *innerNativeAdView;
 
 
 /*** AdMob ***/
@@ -56,6 +57,8 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
 @property (strong, nonatomic) MPNativeAd *mpNativeAd;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
+@property (weak, nonatomic) UIView *mpNativeAdView;
+
 
 @end
 
@@ -77,6 +80,18 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
     _bannerAdRect = CGRectMake((SCREEN_WIDTH-bannerWidth)/2, SCREEN_HEIGHT - bannerHeight , bannerWidth, bannerHeight);
 
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewDidAppear:true];
+    _nativeAdView.hidden = true;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:true];
+    _nativeAdView.hidden = true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -239,10 +254,30 @@ typedef NS_ENUM(NSInteger, MFRandomStringPart) {
                 
             } else {
                 
-                NSLog(@"mopub native reponse: %@", response);
-                /*
+                //NSLog(@"mopub native reponse: %@", response);
+                
+                _nativeAdView.hidden = false;
+                
                 NSDictionary *propertiesDict = response.properties;
-                */
+                
+                _nativeAdTitle.text = [propertiesDict objectForKey:kAdTitleKey];
+                _nativeAdDescription.text = [propertiesDict objectForKey:kAdTextKey];
+                _nativeAdImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[propertiesDict objectForKey:kAdIconImageKey]]]];
+                
+                self.mpNativeAd = response;
+                self.mpNativeAd.delegate = self;
+                
+                _mpNativeAdView = [response retrieveAdViewWithError:nil];
+                _mpNativeAdView.backgroundColor = [UIColor whiteColor];
+                _mpNativeAdView.frame = _innerNativeAdView.frame; //CGRectMake(0, 0, 400, 500);
+                
+                [_mpNativeAdView addSubview:_nativeAdTitle];
+                [_mpNativeAdView addSubview:_nativeAdDescription];
+                [_mpNativeAdView addSubview:_nativeAdImage];
+                
+                [_nativeAdView addSubview:_mpNativeAdView];
+                
+
              
             }
         }];
@@ -610,6 +645,11 @@ didReceiveNativeContentAd:(GADNativeContentAd *)nativeContentAd {
     
     NSLog(@"nativeAd.properties: %@", nativeAd.properties);
     
+}
+
+- (UIViewController *)viewControllerForPresentingModalView {
+    
+    return self;
 }
 
 #pragma mark Mopub Nativew Ad Delegate

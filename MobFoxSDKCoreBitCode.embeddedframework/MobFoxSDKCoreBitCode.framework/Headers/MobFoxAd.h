@@ -39,6 +39,8 @@
 
 @interface MobFoxAd : UIView <UIWebViewDelegate, MobFoxCustomEventDelegate, UIGestureRecognizerDelegate, MFExceptionHandlerDelegate>
 
+    
+
 
 @property (nonatomic, weak) id <MobFoxAdDelegate> delegate;
 @property (nonatomic, strong) MFWebViewJavascriptBridge *bridge;
@@ -75,9 +77,11 @@
 @property (nonatomic, assign, getter=isUnitTesting) BOOL unit_testing;
 
 
+
 //@property (nonatomic, assign, getter=isDebug) BOOL debug;
 @property (nonatomic, assign, getter=isDelegateCustomEvents) BOOL delegateCustomEvents;
 @property (nonatomic, assign, getter=isAdspace_strict) BOOL adspace_strict;
+
 
 
 
@@ -101,6 +105,13 @@
 - (void)_setSize:(CGSize)size withContainer:(CGSize)container;
 - (void)_setFrame:(CGRect)aRect;
 
+
+- (void)removeTimeout;
+
+    
+
+    
+    
 
 @end
 
