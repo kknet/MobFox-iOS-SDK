@@ -47,8 +47,8 @@
 @property (nonatomic, strong) MFLocationServicesManager *locationServicesManager;
 
 
-@property (nonatomic) MFWebViewJavascriptBridge *brg;
-@property (nonatomic) WebViewJavascriptBridgeBase *base;
+//@property (nonatomic) MFWebViewJavascriptBridge *brg;
+//@property (nonatomic) WebViewJavascriptBridgeBase *base;
 
 
 @property (nonatomic, copy) NSString* position;
